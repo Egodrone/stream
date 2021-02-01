@@ -50,7 +50,9 @@ public class StreamAssignment {
     @Test
     public void task2(){
         long amount = 0;
+
         PeopleImpl pps = new PeopleImpl();
+
         amount = pps.getPeople().stream().count();
         assertEquals(10000, amount);
     }
@@ -66,9 +68,6 @@ public class StreamAssignment {
         int expected = 90;
 
         PeopleImpl pps = new PeopleImpl();
-        //Stream<Person> personsWithLastNameAndersson = pps.getPeople().stream();
-        //Person p = new Person();
-        //amount = personsWithLastNameAndersson.filter(z -> z.getLastName().equals("Andersson")).count();
 
         amount = pps.getPeople().stream()
                 .filter(z -> z.getLastName().equals("Andersson"))
@@ -88,17 +87,16 @@ public class StreamAssignment {
         List<Person> females = null;
 
         PeopleImpl pps = new PeopleImpl();
-        //pps.getPeople().stream().filter(p -> p.getGender().equals("FEMALE")).forEach(System.out::println);
-        //pps.getPeople().stream().filter(v -> v.getGender().equals("FEMALE")).forEach(System.out::println);
-        pps.getPeople().stream()
-                .filter(person -> person.getGender().equals("female")).forEach(System.out::println);
-        females = pps.getPeople().stream().filter(z -> z.getGender().name().equals("FEMALE")).collect(Collectors.toList());
 
-        //pps.getPeople().stream().filter(z -> z.getGender().equals("MALE")).collect(Collectors.toList()).forEach(System.out::println);
+        females = pps.getPeople().stream()
+                .filter(z -> z.getGender().name().equals("FEMALE"))
+                .collect(Collectors.toList());
 
         assertNotNull(females);
         assertEquals(expectedSize, females.size());
     }
+
+
 
     /**
      * Extract a TreeSet with all birthDates
@@ -108,12 +106,14 @@ public class StreamAssignment {
         int expectedSize = 8882;
         Set<LocalDate> dates = null;
 
-        //Write code here
+        //api page 18
 
         assertNotNull(dates);
         assertTrue(dates instanceof TreeSet);
         assertEquals(expectedSize, dates.size());
     }
+
+
 
     /**
      * Extract an array of all people named "Erik"
@@ -124,11 +124,15 @@ public class StreamAssignment {
 
         Person[] result = null;
 
-        //Write code here
+        PeopleImpl pps = new PeopleImpl();
+
+        result = pps.getPeople().stream().filter(p -> p.getFirstName().equals("Erik")).toArray(size -> new Person[size]);
 
         assertNotNull(result);
         assertEquals(expectedLength, result.length);
     }
+
+
 
     /**
      * Find a person that has id of 5436
