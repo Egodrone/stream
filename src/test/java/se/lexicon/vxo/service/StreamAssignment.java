@@ -167,7 +167,8 @@ public class StreamAssignment {
     public void task8(){
         LocalDate expectedBirthDate = LocalDate.parse("1910-01-02");
 
-        Optional<Person> optional = null;
+        Optional<Person> optional = people.stream()
+                .min(Comparator.comparing(p -> p.getDateOfBirth()));
 
         assertNotNull(optional);
         assertEquals(expectedBirthDate, optional.get().getDateOfBirth());
@@ -183,9 +184,11 @@ public class StreamAssignment {
         int expectedSize = 892;
         LocalDate date = LocalDate.parse("1920-01-01");
 
-        List<PersonDto> dtoList = null;
-
-        //Write code here
+        List<PersonDto> dtoList = people.stream()
+                .filter(p -> p.getDateOfBirth().isBefore(date))
+                .map(person -> new PersonDto(person.getPersonId()
+                        , person.getFirstName() + person.getLastName()))
+                .collect(Collectors.toList());
 
         assertNotNull(dtoList);
         assertEquals(expectedSize, dtoList.size());
