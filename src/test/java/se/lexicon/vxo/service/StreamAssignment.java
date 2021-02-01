@@ -32,6 +32,8 @@ public class StreamAssignment {
 
     private static List<Person> people = People.INSTANCE.getPeople();
 
+
+
     /**
      * Turn integers into a stream then use forEach as a terminal operation to print out the numbers
      */
@@ -123,10 +125,11 @@ public class StreamAssignment {
         int expectedLength = 3;
 
         Person[] result = null;
-
         PeopleImpl pps = new PeopleImpl();
 
-        result = pps.getPeople().stream().filter(p -> p.getFirstName().equals("Erik")).toArray(size -> new Person[size]);
+        result = pps.getPeople().stream()
+                .filter(p -> p.getFirstName().equals("Erik"))
+                .toArray(size -> new Person[size]);
 
         assertNotNull(result);
         assertEquals(expectedLength, result.length);
@@ -150,6 +153,8 @@ public class StreamAssignment {
         assertEquals(expected, optional.get());
     }
 
+
+
     /**
      * Using min() define a comparator that extracts the oldest person i the list as an Optional
      */
@@ -164,6 +169,8 @@ public class StreamAssignment {
         assertNotNull(optional);
         assertEquals(expectedBirthDate, optional.get().getDateOfBirth());
     }
+
+
 
     /**
      * Map each person born before 1920-01-01 into a PersonDto object then extract to a List
@@ -180,6 +187,8 @@ public class StreamAssignment {
         assertNotNull(dtoList);
         assertEquals(expectedSize, dtoList.size());
     }
+
+
 
     /**
      * In a Stream Filter out one person with id 5914 from people and take the birthdate and build a string from data that the date contains then
@@ -199,6 +208,8 @@ public class StreamAssignment {
         assertEquals(expected, optional.get());
     }
 
+
+
     /**
      * Get average age of all People by turning people into a stream and use defined ToIntFunction personToAge
      * changing type of stream to an IntStream.
@@ -216,6 +227,8 @@ public class StreamAssignment {
         assertEquals(expected, averageAge, .01);
     }
 
+
+
     /**
      * Extract from people a sorted string array of all firstNames that are palindromes. No duplicates
      */
@@ -231,6 +244,8 @@ public class StreamAssignment {
         assertArrayEquals(expected, result);
     }
 
+
+
     /**
      * Extract from people a map where each key is a last name with a value containing a list of all that has that lastName
      */
@@ -245,6 +260,8 @@ public class StreamAssignment {
         assertEquals(expectedSize, personMap.size());
     }
 
+
+
     /**
      * Create a calendar using Stream.iterate of year 2020. Extract to a LocalDate array
      */
@@ -254,11 +271,12 @@ public class StreamAssignment {
 
         //Write code here
 
-
         assertNotNull(_2020_dates);
         assertEquals(366, _2020_dates.length);
         assertEquals(LocalDate.parse("2020-01-01"), _2020_dates[0]);
         assertEquals(LocalDate.parse("2020-12-31"), _2020_dates[_2020_dates.length-1]);
     }
+
+
 
 }
