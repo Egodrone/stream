@@ -186,8 +186,8 @@ public class StreamAssignment {
 
         List<PersonDto> dtoList = people.stream()
                 .filter(p -> p.getDateOfBirth().isBefore(date))
-                .map(person -> new PersonDto(person.getPersonId()
-                        , person.getFirstName() + person.getLastName()))
+                .map(p -> new PersonDto(p.getPersonId()
+                        , p.getFirstName() + p.getLastName()))
                 .collect(Collectors.toList());
 
         assertNotNull(dtoList);
