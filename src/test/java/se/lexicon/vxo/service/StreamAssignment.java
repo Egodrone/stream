@@ -91,7 +91,7 @@ public class StreamAssignment {
         PeopleImpl pps = new PeopleImpl();
 
         females = pps.getPeople().stream()
-                .filter(z -> z.getGender().name().equals("FEMALE"))
+                .filter(p -> p.getGender().name().equals("FEMALE"))
                 .collect(Collectors.toList());
 
         assertNotNull(females);
@@ -105,10 +105,13 @@ public class StreamAssignment {
      */
     @Test
     public void task5(){
+
         int expectedSize = 8882;
+
         Set<LocalDate> dates = null;
 
-        //api page 18
+        dates = people.stream().map(Person::getDateOfBirth)
+                .collect(Collectors.toCollection(TreeSet::new));
 
         assertNotNull(dates);
         assertTrue(dates instanceof TreeSet);
@@ -146,7 +149,9 @@ public class StreamAssignment {
 
         Optional<Person> optional = null;
 
-        //Write code here
+        optional = people.stream()
+                .filter(p -> p.getPersonId() == 5436)
+                .findAny();
 
         assertNotNull(optional);
         assertTrue(optional.isPresent());
@@ -163,8 +168,6 @@ public class StreamAssignment {
         LocalDate expectedBirthDate = LocalDate.parse("1910-01-02");
 
         Optional<Person> optional = null;
-
-        //Write code here
 
         assertNotNull(optional);
         assertEquals(expectedBirthDate, optional.get().getDateOfBirth());
