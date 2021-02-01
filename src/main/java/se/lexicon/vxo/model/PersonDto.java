@@ -1,5 +1,7 @@
 package se.lexicon.vxo.model;
 
+
+
 public class PersonDto {
 
     private int personId;

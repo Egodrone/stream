@@ -1,10 +1,14 @@
 package se.lexicon.vxo.model;
 
+
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
+
 
 public class Person implements Serializable {
     private int personId;
@@ -71,4 +75,7 @@ public class Person implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+
+
+
 }
