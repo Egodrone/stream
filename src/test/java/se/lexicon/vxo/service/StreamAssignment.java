@@ -1,5 +1,7 @@
 package se.lexicon.vxo.service;
 
+
+
 import org.junit.jupiter.api.Test;
 import se.lexicon.vxo.model.Gender;
 import se.lexicon.vxo.model.Person;
@@ -10,8 +12,11 @@ import java.time.Period;
 import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+
 
 /**
  * Your task is not make all tests pass (except task1 because its non testable).
@@ -20,6 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * (No Anonymous Inner Classes or Class implementation of functional interfaces)
  *
  */
+
+
+
 public class StreamAssignment {
 
     private static List<Person> people = People.INSTANCE.getPeople();
@@ -31,9 +39,12 @@ public class StreamAssignment {
     public void task1(){
         List<Integer> integers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
-        //Write code here
+        //Stream<Integer> streamIntegers =
+        integers.stream().forEach(System.out::println);
 
     }
+
+
 
     /**
      * Turning people into a Stream count all members
@@ -47,6 +58,8 @@ public class StreamAssignment {
         assertEquals(10000, amount);
     }
 
+
+
     /**
      * Count all people that has Andersson as lastName.
      */
@@ -59,6 +72,8 @@ public class StreamAssignment {
 
         assertEquals(expected, amount);
     }
+
+
 
     /**
      * Extract a list of all female
