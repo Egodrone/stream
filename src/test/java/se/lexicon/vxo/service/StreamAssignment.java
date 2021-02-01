@@ -87,8 +87,14 @@ public class StreamAssignment {
         int expectedSize = 4988;
         List<Person> females = null;
 
-        //Write code here
+        PeopleImpl pps = new PeopleImpl();
+        //pps.getPeople().stream().filter(p -> p.getGender().equals("FEMALE")).forEach(System.out::println);
+        //pps.getPeople().stream().filter(v -> v.getGender().equals("FEMALE")).forEach(System.out::println);
+        pps.getPeople().stream()
+                .filter(person -> person.getGender().equals("female")).forEach(System.out::println);
+        females = pps.getPeople().stream().filter(z -> z.getGender().name().equals("FEMALE")).collect(Collectors.toList());
 
+        //pps.getPeople().stream().filter(z -> z.getGender().equals("MALE")).collect(Collectors.toList()).forEach(System.out::println);
 
         assertNotNull(females);
         assertEquals(expectedSize, females.size());
