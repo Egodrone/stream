@@ -9,6 +9,7 @@ import se.lexicon.vxo.model.PersonDto;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
@@ -145,7 +146,8 @@ public class StreamAssignment {
      */
     @Test
     public void task7(){
-        Person expected = new Person(5436, "Tea", "Håkansson", LocalDate.parse("1968-01-25"), Gender.FEMALE);
+        Person expected = new Person(5436, "Tea",
+                "Håkansson", LocalDate.parse("1968-01-25"), Gender.FEMALE);
 
         Optional<Person> optional = null;
 
@@ -197,7 +199,8 @@ public class StreamAssignment {
 
 
     /**
-     * In a Stream Filter out one person with id 5914 from people and take the birthdate and build a string from data that the date contains then
+     * In a Stream Filter out one person with id 5914 from people and take
+     * the birthdate and build a string from data that the date contains then
      * return the string.
      */
     @Test
@@ -205,9 +208,11 @@ public class StreamAssignment {
         String expected = "WEDNESDAY 19 DECEMBER 2012";
         int personId = 5914;
 
-        Optional<String> optional = null;
-
-        //Write code here
+        Optional<String> optional = people.stream()
+                .filter(p -> p.getPersonId() == personId)
+                .findAny().map(p -> p.getDateOfBirth()
+                        .format(DateTimeFormatter.ofPattern("eeee dd MMMM YYYY")
+                                .withLocale(Locale.ENGLISH)).toUpperCase(Locale.ROOT));
 
         assertNotNull(optional);
         assertTrue(optional.isPresent());
